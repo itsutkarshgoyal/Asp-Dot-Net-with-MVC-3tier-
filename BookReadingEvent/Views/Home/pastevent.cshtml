@@ -1,0 +1,50 @@
+﻿@model IEnumerable<BookReadingEventViewModel.EventDetailViewModel>
+
+@{
+    ViewBag.Title = "pastevent";
+    if (Session["id"] != null)
+    {
+        Layout = "~/Views/Shared/_Login_Layout.cshtml";
+    }
+    else
+    { Layout = "~/Views/Shared/_Layout.cshtml"; }
+}
+
+<h2>Past Events</h2>
+
+<table class="table">
+    <tr>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.start_time)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.start_time)
+        </td>
+        
+        <td>
+        @Html.ActionLink("Details", "Details", new { id = item.Event_id })
+        </td>
+    </tr>
+}
+
+</table>

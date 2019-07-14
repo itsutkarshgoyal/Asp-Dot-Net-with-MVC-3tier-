@@ -1,0 +1,67 @@
+﻿@using DataLayer;
+@model IEnumerable<BookReadingEventViewModel.EventDetailViewModel>
+@{
+
+
+    ViewBag.Title = "LoginUser";
+    if (Session["id"] != null)
+    {
+        Layout = "~/Views/Shared/_Login_Layout.cshtml";
+    }
+    else
+    { Layout = "~/Views/Shared/_Layout.cshtml"; }
+}
+
+<div class="jumbotron">
+    <h1> Book Reading Day</h1>
+    <p class="lead">Bring out the geek inside you and venture into new world.</p>
+    <p>
+        <a href="upevent" class="btn btn-primary btn-lg">Upcoming Events &raquo;</a>
+        <a href="pastevent" class="btn btn-primary btn-lg">Past Events &raquo;</a>
+    </p>
+</div>
+<div class="row">
+    
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("Event Title")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Location")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Start Time")
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.location)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.start_time)
+                        </td>
+                        <td>
+                            @Html.ActionLink("More Details..", "Details", new { id = item.Event_id }, new { @class = "btn btn-primary btn-sm" })
+
+                        </td>
+                        <td>
+                            @Html.ActionLink("See Comments..", "comments", new { id = item.Event_id }, new { @class = "btn btn-primary btn-sm" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+   
+</div>

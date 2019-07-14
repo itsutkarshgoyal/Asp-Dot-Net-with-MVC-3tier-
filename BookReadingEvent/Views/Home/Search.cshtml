@@ -1,0 +1,93 @@
+﻿@model IEnumerable<BookReadingEventViewModel.EventDetailViewModel>
+
+@{
+    ViewBag.Title = "Search";
+    if (Session["id"] != null)
+    {
+        Layout = "~/Views/Shared/_Login_Layout.cshtml";
+    }
+    else
+    { Layout = "~/Views/Shared/_Layout.cshtml"; }
+}
+
+<h2>Search</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.created_by)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Event_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.start_time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.duration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.other_details)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.invitation)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.created_by)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Event_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.start_time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.duration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.other_details)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.invitation)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.Event_id  }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Event_id }) |
+            @Html.ActionLink("Delete", "Delete", new {  id = item.Event_id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BookReadingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="comments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Event_id" Type="int" Nullable="false" />
+    <Property Name="description" Type="nchar" MaxLength="100" />
+    <Property Name="created_on" Type="datetime" />
+    <Property Name="modified_on" Type="datetime" />
+    <Property Name="created_by" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EventDetails">
+    <Key>
+      <PropertyRef Name="Event_id" />
+    </Key>
+    <Property Name="created_by" Type="int" Nullable="false" />
+    <Property Name="Event_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="location" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="start_time" Type="datetime" Nullable="false" />
+    <Property Name="type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="duration" Type="nvarchar(max)" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="other_details" Type="nvarchar(max)" />
+    <Property Name="invitation" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Invitation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Event_id" Type="int" />
+    <Property Name="email" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="UserDetails">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="first_name" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="last_name" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="password" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="role" Type="nchar" MaxLength="10" />
+    <Property Name="email" Type="nchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_comments_EventDetails">
+    <End Role="EventDetails" Type="Self.EventDetails" Multiplicity="1" />
+    <End Role="comments" Type="Self.comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventDetails">
+        <PropertyRef Name="Event_id" />
+      </Principal>
+      <Dependent Role="comments">
+        <PropertyRef Name="Event_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_comments_UserDetails">
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="comments" Type="Self.comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="comments">
+        <PropertyRef Name="created_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invitation_EventDetails">
+    <End Role="EventDetails" Type="Self.EventDetails" Multiplicity="0..1" />
+    <End Role="Invitation" Type="Self.Invitation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventDetails">
+        <PropertyRef Name="Event_id" />
+      </Principal>
+      <Dependent Role="Invitation">
+        <PropertyRef Name="Event_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BookReadingModelStoreContainer">
+    <EntitySet Name="comments" EntityType="Self.comments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EventDetails" EntityType="Self.EventDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Invitation" EntityType="Self.Invitation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_comments_EventDetails" Association="Self.FK_comments_EventDetails">
+      <End Role="EventDetails" EntitySet="EventDetails" />
+      <End Role="comments" EntitySet="comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_comments_UserDetails" Association="Self.FK_comments_UserDetails">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="comments" EntitySet="comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invitation_EventDetails" Association="Self.FK_Invitation_EventDetails">
+      <End Role="EventDetails" EntitySet="EventDetails" />
+      <End Role="Invitation" EntitySet="Invitation" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

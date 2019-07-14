@@ -1,0 +1,50 @@
+﻿@using DataLayer;
+@model IEnumerable<BookReadingEventViewModel.CommentsViewModel>
+@{
+    if (Session["id"] != null)
+    {
+        Layout = "~/Views/Shared/_Login_Layout.cshtml";
+    }
+    else
+    { Layout = "~/Views/Shared/_Layout.cshtml"; }
+}
+    <h4>Comment</h4>
+    @Html.ActionLink(
+        linkText: "Create New..",
+        actionName: "Create",
+        controllerName: "Comments",
+        routeValues: new {
+            id = Convert.ToInt32(Request.Url.Segments.Last())
+    },
+        htmlAttributes: "btn btn-primary btn-sm"
+    )
+
+    <br><br>
+    @foreach (var item in Model)
+    {
+
+        <div>
+
+            <dl class="form-group row">
+
+                <dt class="col-lg-10">
+                    @Html.DisplayFor(model => item.description)
+                </dt>
+
+                <dt class="col-lg-10">
+                    @Html.DisplayFor(model => item.Event_id) |
+                    @Html.DisplayFor(model => item.created_on)  | @Html.DisplayFor(model => item.created_by)
+                </dt>
+                <dt class="col-lg-10">
+                    ----------------------------------------------------------------------------------------
+                </dt>
+
+
+            </dl>
+
+
+        </div>
+    }
+    <p>
+        @Html.ActionLink("Back to List", "Index","Event")
+    </p>

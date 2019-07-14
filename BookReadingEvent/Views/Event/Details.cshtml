@@ -1,0 +1,109 @@
+﻿@using DataLayer;
+@model IEnumerable<BookReadingEventViewModel.EventDetailViewModel>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Login_Layout.cshtml";
+}
+
+<h2>Details</h2>
+@foreach (var item in Model)
+{
+    <div class="form-group row">
+        <h4>EventDetail</h4>
+        <hr />
+        <dl class="form-group row">
+            <dt class="col-sm-2 col-form-label">
+                @Html.DisplayNameFor(model => model.created_by)
+            </dt>
+
+            <dd class="col-sm-10">
+                @*@Html.DisplayFor(modelItem => item.created_by)*@
+                @ViewBag.Message
+            </dd>
+
+            <dt class="col-sm-2 col-form-label">
+                @Html.DisplayNameFor(model => model.Event_id)
+            </dt>
+
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => item.Event_id)
+            </dd>
+
+            <dt class="col-sm-2 col-form-label">
+                @Html.DisplayNameFor(model => model.title)
+            </dt>
+
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => item.title)
+            </dd>
+
+            <dt class="col-sm-2 col-form-label">
+                @Html.DisplayNameFor(model => model.location)
+            </dt>
+
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => item.location)
+            </dd>
+
+            <dt class="col-sm-2 col-form-label">
+                @Html.DisplayNameFor(model => model.start_time)
+            </dt>
+
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => item.start_time)
+            </dd>
+
+            <dt class="col-sm-2 col-form-label">
+                @Html.DisplayNameFor(model => model.type)
+            </dt>
+
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => item.type)
+            </dd>
+            @if (item.duration != null)
+            {
+                <dt class="col-sm-2 col-form-label">
+                    @Html.DisplayNameFor(model => model.duration)
+                </dt>
+
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(modelItem => item.duration)
+                </dd>
+            }
+            @if (item.description != null)
+            {
+                <dt class="col-sm-2 col-form-label">
+                    @Html.DisplayNameFor(model => model.description)
+                </dt>
+
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(modelItem => item.description)
+                </dd>
+            }
+            @if (item.other_details != null)
+            {
+                <dt class="col-sm-2 col-form-label">
+                    @Html.DisplayNameFor(model => model.other_details)
+                </dt>
+
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(modelItem => item.other_details)
+                </dd>
+            }
+            @if (item.invitation != null)
+            {
+                <dt class="col-sm-2 col-form-label">
+                    @Html.DisplayNameFor(model => model.invitation)
+                </dt>
+
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(modelItem => item.invitation)
+                </dd>
+            }
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

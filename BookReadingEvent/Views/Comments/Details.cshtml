@@ -1,0 +1,64 @@
+﻿@model BookReadingEventViewModel.CommentsViewModel
+
+@{
+    ViewBag.Title = "Details";
+    if (Session["id"] != null)
+    {
+        Layout = "~/Views/Shared/_Login_Layout.cshtml";
+    }
+    else
+    { Layout = "~/Views/Shared/_Layout.cshtml"; }
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>comment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Event_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.created_on)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.created_on)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.modified_on)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.modified_on)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.created_by)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.created_by)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index","Event")
+</p>

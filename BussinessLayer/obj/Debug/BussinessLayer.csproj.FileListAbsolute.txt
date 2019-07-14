@@ -1,0 +1,17 @@
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BussinessLayer\bin\Debug\BussinessLayer.dll.config
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BussinessLayer\bin\Debug\BussinessLayer.dll
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BussinessLayer\bin\Debug\BussinessLayer.pdb
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BussinessLayer\bin\Debug\DataLayer.dll
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BussinessLayer\bin\Debug\EntityFramework.dll
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BussinessLayer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BussinessLayer\bin\Debug\DataLayer.pdb
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BussinessLayer\bin\Debug\DataLayer.dll.config
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BussinessLayer\bin\Debug\EntityFramework.xml
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BussinessLayer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BussinessLayer\obj\Debug\BussinessLayer.csprojAssemblyReference.cache
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BussinessLayer\obj\Debug\BussinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BussinessLayer\obj\Debug\BussinessLayer.csproj.CopyComplete
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BussinessLayer\obj\Debug\BussinessLayer.dll
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BussinessLayer\obj\Debug\BussinessLayer.pdb
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BussinessLayer\bin\Debug\BookReadingEventViewModel.dll
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BussinessLayer\bin\Debug\BookReadingEventViewModel.pdb

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BookReadingModelStoreContainer" CdmEntityContainer="BookReadingEntities">
+    <EntitySetMapping Name="UserDetails">
+      <EntityTypeMapping TypeName="BookReadingModel.UserDetail">
+        <MappingFragment StoreEntitySet="UserDetails">
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="comments">
+      <EntityTypeMapping TypeName="BookReadingModel.comment">
+        <MappingFragment StoreEntitySet="comments">
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+          <ScalarProperty Name="created_on" ColumnName="created_on" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="Event_id" ColumnName="Event_id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventDetails">
+      <EntityTypeMapping TypeName="BookReadingModel.EventDetail">
+        <MappingFragment StoreEntitySet="EventDetails">
+          <ScalarProperty Name="invitation" ColumnName="invitation" />
+          <ScalarProperty Name="other_details" ColumnName="other_details" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="Event_id" ColumnName="Event_id" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invitations">
+      <EntityTypeMapping TypeName="BookReadingModel.Invitation">
+        <MappingFragment StoreEntitySet="Invitation">
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="Event_id" ColumnName="Event_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

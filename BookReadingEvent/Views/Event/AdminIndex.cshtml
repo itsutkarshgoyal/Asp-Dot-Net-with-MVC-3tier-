@@ -1,0 +1,56 @@
+﻿@model IEnumerable<BookReadingEventViewModel.EventDetailViewModel>
+
+@{
+    ViewBag.Title = "AdminIndex";
+    Layout = "~/Views/Shared/_Login_Layout.cshtml";
+}
+
+<h2>Admin </h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.start_time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.type)
+        </th>
+      
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.start_time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type)
+        </td>
+       
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Event_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Event_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Event_id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BookReadingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="comments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Event_id" Type="int" Nullable="false" />
+          <Property Name="description" Type="nchar" MaxLength="100" />
+          <Property Name="created_on" Type="datetime" />
+          <Property Name="modified_on" Type="datetime" />
+          <Property Name="created_by" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EventDetails">
+          <Key>
+            <PropertyRef Name="Event_id" />
+          </Key>
+          <Property Name="created_by" Type="int" Nullable="false" />
+          <Property Name="Event_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="location" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="start_time" Type="datetime" Nullable="false" />
+          <Property Name="type" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="duration" Type="nvarchar(max)" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="other_details" Type="nvarchar(max)" />
+          <Property Name="invitation" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Invitation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Event_id" Type="int" />
+          <Property Name="email" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="UserDetails">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="last_name" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="password" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="role" Type="nchar" MaxLength="10" />
+          <Property Name="email" Type="nchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_comments_EventDetails">
+          <End Role="EventDetails" Type="Self.EventDetails" Multiplicity="1" />
+          <End Role="comments" Type="Self.comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventDetails">
+              <PropertyRef Name="Event_id" />
+            </Principal>
+            <Dependent Role="comments">
+              <PropertyRef Name="Event_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_comments_UserDetails">
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="comments" Type="Self.comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetails">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="comments">
+              <PropertyRef Name="created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invitation_EventDetails">
+          <End Role="EventDetails" Type="Self.EventDetails" Multiplicity="0..1" />
+          <End Role="Invitation" Type="Self.Invitation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventDetails">
+              <PropertyRef Name="Event_id" />
+            </Principal>
+            <Dependent Role="Invitation">
+              <PropertyRef Name="Event_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BookReadingModelStoreContainer">
+          <EntitySet Name="comments" EntityType="Self.comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventDetails" EntityType="Self.EventDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invitation" EntityType="Self.Invitation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_comments_EventDetails" Association="Self.FK_comments_EventDetails">
+            <End Role="EventDetails" EntitySet="EventDetails" />
+            <End Role="comments" EntitySet="comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_comments_UserDetails" Association="Self.FK_comments_UserDetails">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="comments" EntitySet="comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invitation_EventDetails" Association="Self.FK_Invitation_EventDetails">
+            <End Role="EventDetails" EntitySet="EventDetails" />
+            <End Role="Invitation" EntitySet="Invitation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BookReadingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BookReadingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UserDetails" EntityType="BookReadingModel.UserDetail" />
+          <EntitySet Name="comments" EntityType="BookReadingModel.comment" />
+          <EntitySet Name="EventDetails" EntityType="BookReadingModel.EventDetail" />
+          <EntitySet Name="Invitations" EntityType="BookReadingModel.Invitation" />
+          <AssociationSet Name="FK_comments_EventDetails" Association="BookReadingModel.FK_comments_EventDetails">
+            <End Role="EventDetail" EntitySet="EventDetails" />
+            <End Role="comment" EntitySet="comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_comments_UserDetails" Association="BookReadingModel.FK_comments_UserDetails">
+            <End Role="UserDetail" EntitySet="UserDetails" />
+            <End Role="comment" EntitySet="comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invitation_EventDetails" Association="BookReadingModel.FK_Invitation_EventDetails">
+            <End Role="EventDetail" EntitySet="EventDetails" />
+            <End Role="Invitation" EntitySet="Invitations" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="UserDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="last_name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="role" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="comments" Relationship="BookReadingModel.FK_comments_UserDetails" FromRole="UserDetail" ToRole="comment" />
+        </EntityType>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Event_id" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="created_on" Type="DateTime" Precision="3" />
+          <Property Name="modified_on" Type="DateTime" Precision="3" />
+          <Property Name="created_by" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EventDetail" Relationship="BookReadingModel.FK_comments_EventDetails" FromRole="comment" ToRole="EventDetail" />
+          <NavigationProperty Name="UserDetail" Relationship="BookReadingModel.FK_comments_UserDetails" FromRole="comment" ToRole="UserDetail" />
+        </EntityType>
+        <EntityType Name="EventDetail">
+          <Key>
+            <PropertyRef Name="Event_id" />
+          </Key>
+          <Property Name="created_by" Type="Int32" Nullable="false" />
+          <Property Name="Event_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="location" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="start_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="duration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="other_details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="invitation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="comments" Relationship="BookReadingModel.FK_comments_EventDetails" FromRole="EventDetail" ToRole="comment" />
+          <NavigationProperty Name="Invitations" Relationship="BookReadingModel.FK_Invitation_EventDetails" FromRole="EventDetail" ToRole="Invitation" />
+        </EntityType>
+        <EntityType Name="Invitation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Event_id" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EventDetail" Relationship="BookReadingModel.FK_Invitation_EventDetails" FromRole="Invitation" ToRole="EventDetail" />
+        </EntityType>
+        <Association Name="FK_comments_EventDetails">
+          <End Type="BookReadingModel.EventDetail" Role="EventDetail" Multiplicity="1" />
+          <End Type="BookReadingModel.comment" Role="comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventDetail">
+              <PropertyRef Name="Event_id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="Event_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_comments_UserDetails">
+          <End Type="BookReadingModel.UserDetail" Role="UserDetail" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BookReadingModel.comment" Role="comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invitation_EventDetails">
+          <End Type="BookReadingModel.EventDetail" Role="EventDetail" Multiplicity="0..1" />
+          <End Type="BookReadingModel.Invitation" Role="Invitation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventDetail">
+              <PropertyRef Name="Event_id" />
+            </Principal>
+            <Dependent Role="Invitation">
+              <PropertyRef Name="Event_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BookReadingModelStoreContainer" CdmEntityContainer="BookReadingEntities">
+          <EntitySetMapping Name="UserDetails">
+            <EntityTypeMapping TypeName="BookReadingModel.UserDetail">
+              <MappingFragment StoreEntitySet="UserDetails">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comments">
+            <EntityTypeMapping TypeName="BookReadingModel.comment">
+              <MappingFragment StoreEntitySet="comments">
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="Event_id" ColumnName="Event_id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventDetails">
+            <EntityTypeMapping TypeName="BookReadingModel.EventDetail">
+              <MappingFragment StoreEntitySet="EventDetails">
+                <ScalarProperty Name="invitation" ColumnName="invitation" />
+                <ScalarProperty Name="other_details" ColumnName="other_details" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="Event_id" ColumnName="Event_id" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invitations">
+            <EntityTypeMapping TypeName="BookReadingModel.Invitation">
+              <MappingFragment StoreEntitySet="Invitation">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="Event_id" ColumnName="Event_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

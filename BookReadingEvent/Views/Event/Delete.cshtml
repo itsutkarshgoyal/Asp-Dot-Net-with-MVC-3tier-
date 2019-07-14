@@ -1,0 +1,111 @@
+﻿
+@model IEnumerable<BookReadingEventViewModel.EventDetailViewModel>
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Login_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+<br>
+<h5 style="color:red">@ViewBag.Message</h5>
+<br>
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>EventDetail</h4>
+    <hr />
+    @foreach (var item in Model)
+    {
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.created_by)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => item.created_by)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Event_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => item.Event_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => item.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => item.location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.start_time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => item.start_time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => item.type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => item.duration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => item.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.other_details)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => item.other_details)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.invitation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => item.invitation)
+        </dd>
+
+    </dl>
+    }
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index",null,new { @class = "btn btn-default" })
+        </div>
+    }
+</div>

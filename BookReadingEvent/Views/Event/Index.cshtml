@@ -1,0 +1,62 @@
+﻿
+@model IEnumerable<BookReadingEventViewModel.EventDetailViewModel>
+
+@{
+    ViewBag.Title = "My Event";
+    Layout = "~/Views/Shared/_Login_Layout.cshtml";
+}
+
+<h1>My Events</h1><br>
+@Html.ActionLink("Create New..", "Create", new { @class = "btn btn-primary btn-sm" })
+<div class="row">
+    
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("Event Title")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Location")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Start Time")
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.location)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.start_time)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit..", "Edit", new { id = item.Event_id }, new { @class = "btn btn-primary btn-sm" })
+                    </td>
+                     <td>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Event_id }, new { @class = "btn btn-default" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("More Details..", "Details", new { id = item.Event_id }, new { @class = "btn btn-primary btn-sm" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("See Comments..", "Index","Comments",new { id = item.Event_id }, new { @class = "btn btn-default" })
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+   
+</div>
+
+

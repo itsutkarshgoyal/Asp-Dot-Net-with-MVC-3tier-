@@ -1,0 +1,12 @@
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BookReadingEventViewModel\bin\Debug\BookReadingEventViewModel.dll
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BookReadingEventViewModel\bin\Debug\BookReadingEventViewModel.pdb
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BookReadingEventViewModel\obj\Debug\BookReadingEventViewModel.csprojAssemblyReference.cache
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BookReadingEventViewModel\obj\Debug\BookReadingEventViewModel.csproj.CoreCompileInputs.cache
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BookReadingEventViewModel\obj\Debug\BookReadingEventViewModel.dll
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BookReadingEventViewModel\obj\Debug\BookReadingEventViewModel.pdb
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BookReadingEventViewModel\bin\Debug\DataLayer.dll
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BookReadingEventViewModel\bin\Debug\EntityFramework.dll
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BookReadingEventViewModel\bin\Debug\DataLayer.pdb
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BookReadingEventViewModel\bin\Debug\DataLayer.dll.config
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BookReadingEventViewModel\bin\Debug\EntityFramework.xml
+C:\Users\utkarshgoyal\source\repos\BookReadingEvent\BookReadingEventViewModel\obj\Debug\BookReadingEventViewModel.csproj.CopyComplete

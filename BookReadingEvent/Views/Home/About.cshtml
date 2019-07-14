@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "About";
+    if (Session["id"] != null)
+    {
+        Layout = "~/Views/Shared/_Login_Layout.cshtml";
+    }
+    else
+    { Layout = "~/Views/Shared/_Layout.cshtml"; }
+}
+<h2>@ViewBag.Title</h2>
+<h4>@ViewBag.Message</h4>
+
+<p>
+    
+    Calling All  Book lovers! who love to read & will like to discuss what they are reading/have read! <br>
+    We will meet once a week at a coffee shop/community park. We can/will host book reading sessions and host events around various themes! 
+    <br>Even book exchanges/swaps, second hand purchases etc. Having fun together with like minded readers!
+
+
+</p>

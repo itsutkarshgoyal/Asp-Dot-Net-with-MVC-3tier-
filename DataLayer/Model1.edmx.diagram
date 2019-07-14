@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e6fb716e9e5b48b4a47ae6428e4c89d3" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="BookReadingModel.UserDetail" Width="1.5" PointX="0.75" PointY="7.5" />
+        <EntityTypeShape EntityType="BookReadingModel.comment" Width="1.5" PointX="3.375" PointY="5.625" />
+        <EntityTypeShape EntityType="BookReadingModel.EventDetail" Width="1.5" PointX="0.75" PointY="2" />
+        <EntityTypeShape EntityType="BookReadingModel.Invitation" Width="1.5" PointX="3" PointY="2.75" />
+        <AssociationConnector Association="BookReadingModel.FK_comments_EventDetails" />
+        <AssociationConnector Association="BookReadingModel.FK_comments_UserDetails" />
+        <AssociationConnector Association="BookReadingModel.FK_Invitation_EventDetails" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

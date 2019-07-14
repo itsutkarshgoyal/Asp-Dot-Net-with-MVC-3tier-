@@ -1,0 +1,57 @@
+﻿@model IEnumerable<BookReadingEventViewModel.EventDetailViewModel>
+
+@{
+    ViewBag.Title = "Invitation";
+    Layout = "~/Views/Shared/_Login_Layout.cshtml";
+    Html.EnableClientValidation(true);
+}
+
+<h2>Invitation</h2>
+
+<p>
+
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.start_time)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.start_time)
+            </td>
+
+            <td>
+
+                @Html.ActionLink("Details", "Details", new { id = item.Event_id })
+
+            </td>
+        </tr>
+    }
+
+</table>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")
+
+}

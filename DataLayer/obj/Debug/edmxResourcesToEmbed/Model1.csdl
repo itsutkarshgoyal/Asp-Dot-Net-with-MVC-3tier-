@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BookReadingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="BookReadingEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="UserDetails" EntityType="BookReadingModel.UserDetail" />
+    <EntitySet Name="comments" EntityType="BookReadingModel.comment" />
+    <EntitySet Name="EventDetails" EntityType="BookReadingModel.EventDetail" />
+    <EntitySet Name="Invitations" EntityType="BookReadingModel.Invitation" />
+    <AssociationSet Name="FK_comments_EventDetails" Association="BookReadingModel.FK_comments_EventDetails">
+      <End Role="EventDetail" EntitySet="EventDetails" />
+      <End Role="comment" EntitySet="comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_comments_UserDetails" Association="BookReadingModel.FK_comments_UserDetails">
+      <End Role="UserDetail" EntitySet="UserDetails" />
+      <End Role="comment" EntitySet="comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invitation_EventDetails" Association="BookReadingModel.FK_Invitation_EventDetails">
+      <End Role="EventDetail" EntitySet="EventDetails" />
+      <End Role="Invitation" EntitySet="Invitations" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserDetail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="first_name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="last_name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="role" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="comments" Relationship="BookReadingModel.FK_comments_UserDetails" FromRole="UserDetail" ToRole="comment" />
+  </EntityType>
+  <EntityType Name="comment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Event_id" Type="Int32" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="created_on" Type="DateTime" Precision="3" />
+    <Property Name="modified_on" Type="DateTime" Precision="3" />
+    <Property Name="created_by" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EventDetail" Relationship="BookReadingModel.FK_comments_EventDetails" FromRole="comment" ToRole="EventDetail" />
+    <NavigationProperty Name="UserDetail" Relationship="BookReadingModel.FK_comments_UserDetails" FromRole="comment" ToRole="UserDetail" />
+  </EntityType>
+  <EntityType Name="EventDetail">
+    <Key>
+      <PropertyRef Name="Event_id" />
+    </Key>
+    <Property Name="created_by" Type="Int32" Nullable="false" />
+    <Property Name="Event_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="location" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="start_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="type" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="duration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="other_details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="invitation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="comments" Relationship="BookReadingModel.FK_comments_EventDetails" FromRole="EventDetail" ToRole="comment" />
+    <NavigationProperty Name="Invitations" Relationship="BookReadingModel.FK_Invitation_EventDetails" FromRole="EventDetail" ToRole="Invitation" />
+  </EntityType>
+  <EntityType Name="Invitation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Event_id" Type="Int32" />
+    <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="EventDetail" Relationship="BookReadingModel.FK_Invitation_EventDetails" FromRole="Invitation" ToRole="EventDetail" />
+  </EntityType>
+  <Association Name="FK_comments_EventDetails">
+    <End Type="BookReadingModel.EventDetail" Role="EventDetail" Multiplicity="1" />
+    <End Type="BookReadingModel.comment" Role="comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventDetail">
+        <PropertyRef Name="Event_id" />
+      </Principal>
+      <Dependent Role="comment">
+        <PropertyRef Name="Event_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_comments_UserDetails">
+    <End Type="BookReadingModel.UserDetail" Role="UserDetail" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="BookReadingModel.comment" Role="comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetail">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="comment">
+        <PropertyRef Name="created_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invitation_EventDetails">
+    <End Type="BookReadingModel.EventDetail" Role="EventDetail" Multiplicity="0..1" />
+    <End Type="BookReadingModel.Invitation" Role="Invitation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventDetail">
+        <PropertyRef Name="Event_id" />
+      </Principal>
+      <Dependent Role="Invitation">
+        <PropertyRef Name="Event_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
